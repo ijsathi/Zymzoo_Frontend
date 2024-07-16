@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="ps-item">
                         <h3>${plan.name}</h3>
                         <div class="pi-price">
-                            <span>${plan.duration_in_days} DAYS</span>
+                            <span>${plan.duration_in_days} DAYS</span><br>
+                            <h2>$${plan.fee}</h2>
                         </div>
                         <ul>
                             <li>Free riding</li>
@@ -23,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <li>Month to mouth</li>
                             <li>No time restriction</li>
                         </ul>
-                        <a href="#" class="primary-btn pricing-btn">Enroll now</a>
-                        <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                        <a href="/register.html" class="primary-btn pricing-btn">Enroll now</a>
                     </div>
                 `;
                 pricingContainer.appendChild(planItem);
