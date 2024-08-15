@@ -1,16 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
+    console.log("hlw", loginForm);
+    
 
     function updateNav() {
+        
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        // const isAdmin = localStorage.getItem('isAdmin') === 'true';
+
         document.getElementById('login-link').style.display = isLoggedIn ? 'none' : 'block';
         document.getElementById('register-link').style.display = isLoggedIn ? 'none' : 'block';
         document.getElementById('logout-link').style.display = isLoggedIn ? 'block' : 'none';
+        /* document.getElementById('admin_dashboard').style.display = (isLoggedIn && isAdmin) ? 'block' : 'none';  // here problem */
     }
 
     function logout() {
         localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('isAdmin');
         updateNav();
         alert("You have logged out.");
         window.location.href = "index.html";
@@ -59,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (loginForm) {
+        console.log("Inside Loginform;", loginForm);
+        
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();
             
@@ -79,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
                     if (data.token) {
                         localStorage.setItem('isLoggedIn', 'true');
+                        // localStorage.setItem('isAdmin', data.is_staff.toString());
                         updateNav();
                         alert("Login successful! Redirecting to home page...");
                         window.location.href = "index.html";
