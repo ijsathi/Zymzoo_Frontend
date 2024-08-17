@@ -25,10 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 // Hide other sections and show the user list
                 document.querySelector('.content').style.display = 'none';
+                document.querySelector('.classes-list').style.display = 'none';
                 document.querySelector('.user-list').style.display = 'block';
+                document.querySelector('.plans-list').style.display = 'none';
             })
             .catch(error => console.error('Error fetching users:', error));
     }
+    
+    // Add event listener for the sidebar link to open the users view
+    document.querySelector('.users-sidebar-link').addEventListener('click', showUsers);
     
     window.showUsers = showUsers;
 

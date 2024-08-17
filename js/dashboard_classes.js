@@ -25,15 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 // Hide other sections and show the classes list
                 document.querySelector('.content').style.display = 'none';
-                document.querySelector('.user-list').style.display = 'none'; // Hide users list if it's visible
+                document.querySelector('.user-list').style.display = 'none';
+                document.querySelector('.plans-list').style.display = 'none'; 
                 document.querySelector('.classes-list').style.display = 'block';
             })
             .catch(error => console.error('Error fetching classes:', error));
     }
     
-    // Add this to your event listener or wherever appropriate to open the classes view
+    // Add event listener for the sidebar link to open the classes view
     document.querySelector('.classes-sidebar-link').addEventListener('click', showClasses);    
     
     window.showClasses = showClasses;
-
 });

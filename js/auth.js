@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
-    console.log("hlw", loginForm);
-    
-
     function updateNav() {
         
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -66,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (loginForm) {
-        console.log("Inside Loginform;", loginForm);
         
         loginForm.addEventListener("submit", function (e) {
             e.preventDefault();

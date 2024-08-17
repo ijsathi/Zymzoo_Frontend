@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zymzoo Admin Dashboard</title>
-    
-    <!-- Bootstrap CSS --> 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -16,12 +15,15 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .navbar {
             background-color: #343a40;
         }
+
         .navbar-brand {
             color: #fff;
         }
+
         .sidebar {
             height: 100%;
             width: 250px;
@@ -31,6 +33,7 @@
             background-color: #343a40;
             padding-top: 20px;
         }
+
         .sidebar a {
             padding: 15px;
             text-decoration: none;
@@ -38,34 +41,40 @@
             color: #fff;
             display: block;
         }
+
         .sidebar a:hover {
             background-color: #575d63;
         }
+
         .content {
             margin-left: 260px;
             padding: 20px;
         }
+
         .card {
             margin-bottom: 20px;
         }
+
         .logout-btn {
             position: absolute;
             bottom: 20px;
             left: 15px;
             width: 90%;
         }
-        .dash-item{
+
+        .dash-item {
             background-color: #f36100;
         }
     </style>
 </head>
 
-<body>
+<body id="d-board">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">Zymzoo Admin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -80,19 +89,21 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="./index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-        <!-- <a href="#users"><i class="fas fa-users"></i> Users</a> -->
-        <a href="#users" onclick="showUsers()"><i class="fas fa-users"></i> Users</a>
-        <a href="#classes" class="classes-sidebar-link"><i class="fas fa-dumbbell"></i> Classes</a> 
-        <a href="#subscriptions"><i class="fas fa-file-alt"></i> Subscriptions</a>
+        <a href="./admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#users" class="users-sidebar-link"><i class="fas fa-users"></i> Users</a>
+        <a href="#classes" class="classes-sidebar-link"><i class="fas fa-dumbbell"></i> Classes</a>
+        <a href="#plans" class="plans-sidebar-link"><i class="fas fa-file-alt"></i> Plans</a>
         <a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a>
         <a class="nav-link dash-item logout-btn btn" href="./index.html" onclick="logout()">Logout</a>
     </div>
 
+
     <!-- for user start -->
     <div id="users" class="user-list" style="display: none;">
         <table style="width: 60%;" class="table m-auto table-striped">
-            <h2 class=" text-center">All Users</h2>
+            <div class="text-center m-4">
+                <h2>WHO ARE OUR USERS</h2>
+            </div>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -114,7 +125,9 @@
     <!-- for classes -->
     <div id="classes" class="classes-list" style="display: none;">
         <table style="width: 60%;" class="table m-auto table-striped">
-            <h2>All Classes</h2>
+            <div class="text-center m-4">
+                <h2>OUR CLASSES</h2>
+            </div>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -131,7 +144,28 @@
             </tbody>
         </table>
     </div>
-    
+    <!-- for classes end -->
+     
+    <!-- for plans -->
+    <div id="plans" class="plans-list" style="display: none;">
+        <table style="width: 60%;" class="table m-auto table-striped">
+            <div class="text-center m-4">
+                <h2>OUR PLANS</h2>
+            </div>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Fee</th>
+                </tr>
+            </thead>
+            <tbody id="plans-list-body">
+                <!-- Plan rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <!-- plan end -->
 
     <!-- Content -->
     <div class="content">
@@ -194,9 +228,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Add more sections for users, classes, etc. -->
-        
+
     </div>
 
     <!-- Bootstrap JS and dependencies -->
@@ -209,6 +243,7 @@
     <script src="js/dashboard.js"></script>
     <script src="js/dashboard_user.js"></script>
     <script src="js/dashboard_classes.js"></script>
+    <script src="js/dashboard_plans.js"></script>
 </body>
 
 </html>
