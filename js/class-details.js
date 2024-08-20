@@ -4,7 +4,7 @@ function getClassDetails() {
     const id = new URLSearchParams(window.location.search).get('id');
     if (id) {
         fetchClassDetails(id);
-        fetchClassInstractor(id);
+        fetchClassInstructor(id);
     } else {
         console.error('id parameter is missing in the URL');
     }
@@ -45,6 +45,7 @@ function displayClassDetails(detail) {
                             <p>Schedule: ${new Date(detail.schedule).toLocaleString()} </p>
                             <p>Duration: ${detail.duration_minutes_in_days} minutes</p>
                             <p>Intensity:<span class="font-weight-bold"> ${detail.intensity}</span></p>
+                            <button id="book-now-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookNowModal">Book Now</button>
                         </div>
                     </div>
                 </div>
@@ -59,15 +60,20 @@ function displayClassDetails(detail) {
         </div>
         `;
         parent.appendChild(div);
+
+        // Add event listener to Book Now button
+        const bookNowBtn = div.querySelector('#book-now-btn');
+        bookNowBtn.addEventListener('click', () => {
+            document.getElementById('className').value = detail.title;
+            // Optionally set the user's name if available
+            document.getElementById('userName').value = "User's Name"; // Replace with actual user name
+        });
     } else {
         console.error('Element with id "class-details" not found');
     }
 }
 
-
-// for displayInstructor
-
-function fetchClassInstractor(id) {
+function fetchClassInstructor(id) {
     fetch(`https://zymzoo.onrender.com/fitness-classes/?id=${id}`)
         .then(response => {
             if (!response.ok) {
@@ -123,6 +129,38 @@ function displayInstructor(detail) {
         `;
         parent.appendChild(div);
     } else {
-        console.error('Element with id "class-details" not found');
+        console.error('Element with id "class-instructor" not found');
     }
 }
+
+document.getElementById('bookClassForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const userName = document.getElementById('userName').value;
+    const className = document.getElementById('className').value;
+
+    // Example of API call for booking (replace with actual API endpoint and data structure)
+    fetch('https://zymzoo.onrender.com/book-class/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userName: userName,
+            className: className,
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Booking successful:', data);
+        // Close the modal and show a success message
+        document.querySelector('#bookNowModal .btn-close').click();
+        alert('Booking successful!');
+    })
+    .catch(error => console.error('Error booking class:', error));
+});

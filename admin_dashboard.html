@@ -100,7 +100,7 @@
 
     <!-- for user start -->
     <div id="users" class="user-list" style="display: none;">
-        <table style="width: 60%;" class="table m-auto table-striped">
+        <table style="width: 50%;" class="table m-auto table-striped">
             <div class="text-center m-4">
                 <h2>WHO ARE OUR USERS</h2>
             </div>
@@ -112,7 +112,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Membership Plan</th>
-                    <!-- Add more columns as needed -->
+                    <th>Actions</th> <!-- New column for Update/Delete -->
                 </tr>
             </thead>
             <tbody id="user-list-body">
@@ -120,6 +120,51 @@
             </tbody>
         </table>
     </div>
+    
+    <!-- Update User Modal -->
+    <div id="updateUserModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateUserForm">
+                        <input type="hidden" id="updateUserId">
+                        <div class="form-group">
+                            <label for="updateUsername">Username</label>
+                            <input type="text" class="form-control" id="updateUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateFirstName">First Name</label>
+                            <input type="text" class="form-control" id="updateFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateLastName">Last Name</label>
+                            <input type="text" class="form-control" id="updateLastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateEmail">Email</label>
+                            <input type="email" class="form-control" id="updateEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateRole">Role</label>
+                            <select class="form-control" id="updateRole">
+                                <option value="Admin">Admin</option>
+                                <option value="Member">Member</option>
+                            </select>
+                        </div>
+                        <!-- Add more fields if necessary -->
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- for user end -->
 
     <!-- for classes -->
@@ -158,6 +203,7 @@
                     <th>Name</th>
                     <th>Duration</th>
                     <th>Fee</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="plans-list-body">
@@ -165,6 +211,39 @@
             </tbody>
         </table>
     </div>
+    <!-- Update Plan Modal -->
+<div id="updatePlanModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Plan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="updatePlanForm">
+                    <input type="hidden" id="updatePlanId">
+                    <div class="form-group">
+                        <label for="updatePlanName">Plan Name</label>
+                        <input type="text" class="form-control" id="updatePlanName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePlanDuration">Duration (days)</label>
+                        <input type="number" class="form-control" id="updatePlanDuration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePlanFee">Fee</label>
+                        <input type="number" class="form-control" id="updatePlanFee" required>
+                    </div>
+                    <!-- Add more fields if necessary -->
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- plan end -->
 
     <!-- Content -->
